@@ -13,7 +13,6 @@ describe DockingStation do
 
   describe '#release_bike' do
     subject (:bike) { docking_station.release_bike }
-    # bike = docking_station.release_bike
 
     it 'returns a bike' do
       expect(bike.class).to eq Bike
