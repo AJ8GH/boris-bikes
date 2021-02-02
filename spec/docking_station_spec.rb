@@ -7,9 +7,20 @@ describe DockingStation do
     expect { DockingStation.new }.to_not raise_error
   end
 
+  it 'responds to release_bike' do
+    expect(docking_station).to respond_to(:release_bike)
+  end
+
   describe '#release_bike' do
-    it 'responds to release_bike' do
-      expect(docking_station).to respond_to(:release_bike)
+    subject (:bike) { docking_station.release_bike }
+    # bike = docking_station.release_bike
+
+    it 'returns a bike' do
+      expect(bike.class).to eq Bike
+    end
+
+    it 'returns a working bike' do
+      expect(bike.working?).to be true
     end
   end
 end
