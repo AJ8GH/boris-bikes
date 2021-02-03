@@ -1,7 +1,7 @@
 require 'docking_station'
 
 describe DockingStation do
-  subject (:docking_station) { DockingStation.new }
+  subject(:docking_station) { DockingStation.new }
 
   it 'creates a new DockingStation' do
     expect { DockingStation.new }.to_not raise_error
@@ -12,7 +12,7 @@ describe DockingStation do
   end
 
   describe '#release_bike' do
-    subject (:bike) { docking_station.release_bike }
+    subject(:bike) { docking_station.release_bike }
 
     it 'returns a bike' do
       expect(bike.class).to eq Bike
