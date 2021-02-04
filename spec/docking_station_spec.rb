@@ -30,11 +30,25 @@ describe DockingStation do
   end
 
   describe '#dock' do
-    it { is_expected.to respond_to(:dock).with(1) }
+    context 'when not full' do
+      it { is_expected.to respond_to(:dock).with(1) }
 
-    it 'adds bike to bikes' do
-      subject.dock(bike)
-      expect(subject.bikes).to include(bike)
+      it 'adds bike to bikes' do
+        subject.dock(bike)
+        expect(subject.bikes).to include(bike)
+      end
+
+      it 'raises no error when nearly full' do
+        (subject.capacity - 1).times { subject.dock(bike) }
+        expect { subject.dock(bike) }.to_not raise_error(CapacityError)
+      end
+    end
+
+    context 'when full' do
+      before(:example) { subject.capacity.times { subject.dock(bike) } }
+      it 'raises error' do
+        expect { subject.dock(bike) }.to raise_error(CapacityError, 'Docking station full!')
+      end
     end
   end
 
