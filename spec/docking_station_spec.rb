@@ -67,17 +67,17 @@ describe DockingStation do
     end
   end
 
-  describe '#capacity_full?' do
+  describe '#full?' do
     context 'when empty' do
       it 'returns false' do
-        expect(subject.send(:capacity_full?)).to be false
+        expect(subject.send(:full?)).to be false
       end
     end
 
     context 'when full' do
       before(:example) { subject.capacity.times { subject.dock(bike) } }
       it 'returns true' do
-        expect(subject.send(:capacity_full?)).to be true
+        expect(subject.send(:full?)).to be true
       end
     end
   end
