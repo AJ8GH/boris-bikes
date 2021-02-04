@@ -1,9 +1,9 @@
 describe DockingStation do
   let(:bike) { Bike.new }
 
-  it { is_expected.to respond_to :release_bike }
-
   describe '#release_bike' do
+    it { is_expected.to respond_to :release_bike }
+
     let(:released_bike) { subject.release_bike }
 
     it 'returns a bike' do
@@ -20,11 +20,11 @@ describe DockingStation do
     it { is_expected.to be_an_instance_of Array }
   end
 
-  describe '#dock_bike' do
+  describe '#dock' do
     it { is_expected.to respond_to(:dock_bike).with(1) }
 
     it 'adds bike to bikes' do
-      subject.dock_bike(bike)
+      subject.dock(bike)
       expect(subject.bikes).to include(bike)
     end
   end

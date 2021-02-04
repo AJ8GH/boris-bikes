@@ -9,7 +9,7 @@ class DockingStation
     Bike.new
   end
 
-  def dock_bike(bike)
+  def dock(bike)
     bikes << bike
   end
 end
