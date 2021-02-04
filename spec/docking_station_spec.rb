@@ -12,4 +12,13 @@ describe DockingStation do
       expect(bike.working?).to be true
     end
   end
+
+  describe '#bikes' do
+    subject(:bikes) { described_class.new.bikes }
+    it { is_expected.to be_an_instance_of Array }
+  end
+
+  describe '#dock_bike' do
+    it ''
+  end
 end
