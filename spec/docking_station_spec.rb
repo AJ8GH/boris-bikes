@@ -1,5 +1,6 @@
 describe DockingStation do
-  let(:bike) { Bike.new }
+  let(:bike) { instance_double(Bike, 'Bike', working?: true, class: Bike) }
+  let(:broken_bike) { instance_double(Bike, 'Broken Bike', working?: false) }
 
   describe '#release_bike' do
     context 'when not empty' do
@@ -9,7 +10,7 @@ describe DockingStation do
       it { is_expected.to respond_to :release_bike }
 
       it 'returns a bike' do
-        expect(released_bike).to be_an_instance_of Bike
+        expect(released_bike.class).to be Bike
       end
 
       it 'returns a working bike' do
@@ -24,7 +25,7 @@ describe DockingStation do
     end
 
     context 'when all broken' do
-      before(:example) { subject.dock(Bike.new.broken) }
+      before(:example) { subject.dock(broken_bike) }
       it 'raises No working bikes error' do
         expect { subject.release_bike }.to raise_error(NoWorkingBikesError, 'There are no working bikes!')
       end
@@ -90,24 +91,23 @@ describe DockingStation do
   end
 
   describe '#capacity' do
+    let(:station) { described_class.new(40) }
+
     it 'returns the default capacity' do
       expect(subject.capacity).to eq described_class::DEFAULT_CAPACITY
+    end
+
+    it 'can be set on initialization' do
+      expect(station.capacity).to eq 40
     end
   end
 
   describe '#all_broken?' do
     context 'when all broken' do
-      before (:example) { subject.dock(Bike.new.broken) }
+      before (:example) { subject.dock(broken_bike) }
       it 'returns true' do
         expect(subject.send(:all_broken?)).to be true
       end
     end
   end
-
-  # describe '#find_working_bike' do
-  #   it 'returns the first working bike' do
-  #     [broken_bike, bike, broken_bike].each { |bike| subject.dock(bike) }
-  #     expect(subject.send(:find_working_bike)).to be_working
-  #   end
-  # end
 end
