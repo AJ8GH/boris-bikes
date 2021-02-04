@@ -11,7 +11,8 @@ class DockingStation
 
   def release_bike
     raise NoBikesError if no_bikes?
-    bikes.pop
+    raise NoWorkingBikesError if all_broken?
+    find_working_bike
   end
 
   def dock(bike)
@@ -29,9 +30,11 @@ class DockingStation
     bikes.count >= capacity
   end
 
+  def all_broken?
+    bikes.none? { |bike| bike.working? }
+  end
+
   def find_working_bike
-    bikes.each_with_index do |bike, i|
-      return bikes.slice!(i) if bike.working?
-    end
+    bikes.each_with_index { |bike, i| return bikes.slice!(i) if bike.working? }
   end
 end

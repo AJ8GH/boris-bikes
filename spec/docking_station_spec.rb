@@ -17,9 +17,16 @@ describe DockingStation do
       end
     end
 
-    context 'when  empty' do
+    context 'when empty' do
       it 'raises error no bike error' do
         expect { subject.release_bike }.to raise_error(NoBikesError, 'No bikes!')
+      end
+    end
+
+    context 'when all broken' do
+      before(:example) { subject.dock(Bike.new.broken) }
+      it 'raises No working bikes error' do
+        expect { subject.release_bike }.to raise_error(NoWorkingBikesError, 'There are no working bikes!')
       end
     end
   end
@@ -87,4 +94,20 @@ describe DockingStation do
       expect(subject.capacity).to eq described_class::DEFAULT_CAPACITY
     end
   end
+
+  describe '#all_broken?' do
+    context 'when all broken' do
+      before (:example) { subject.dock(Bike.new.broken) }
+      it 'returns true' do
+        expect(subject.send(:all_broken?)).to be true
+      end
+    end
+  end
+
+  # describe '#find_working_bike' do
+  #   it 'returns the first working bike' do
+  #     [broken_bike, bike, broken_bike].each { |bike| subject.dock(bike) }
+  #     expect(subject.send(:find_working_bike)).to be_working
+  #   end
+  # end
 end
