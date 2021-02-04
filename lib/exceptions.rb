@@ -9,3 +9,9 @@ class CapacityError < StandardError
     super(msg)
   end
 end
+
+class NoWorkingBikesError < StandardError
+  def initialize(msg = 'There are no working bikes!')
+    super(msg)
+  end
+end

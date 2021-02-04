@@ -1,5 +1,6 @@
 class Bike
   attr_accessor :working
+
   alias :working? :working
   undef :working
 
@@ -9,5 +10,6 @@ class Bike
 
   def broken
     self.working = false
+    self
   end
 end

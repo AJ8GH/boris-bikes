@@ -11,7 +11,7 @@ class DockingStation
 
   def release_bike
     raise NoBikesError if no_bikes?
-    Bike.new
+    bikes.pop
   end
 
   def dock(bike)
@@ -27,5 +27,11 @@ class DockingStation
 
   def full?
     bikes.count >= capacity
+  end
+
+  def find_working_bike
+    bikes.each_with_index do |bike, i|
+      return bikes.slice!(i) if bike.working?
+    end
   end
 end
