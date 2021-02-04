@@ -38,10 +38,39 @@ describe DockingStation do
     end
   end
 
-  describe '#empty' do
-    subject { described_class.new.send :no_bikes? }
-    context 'when bikes is empty' do
-      it { is_expected.to be true }
+  describe '#no_bikes?' do
+    context 'when empty' do
+      it 'returns true' do
+        expect(subject.send(:no_bikes?)).to be true
+      end
+    end
+
+    context 'when not empty' do
+      before(:example) { subject.dock(bike) }
+      it 'returns false' do
+        expect(subject.send(:no_bikes?)).to be false
+      end
+    end
+  end
+
+  describe '#capacity_full?' do
+    context 'when empty' do
+      it 'returns false' do
+        expect(subject.send(:capacity_full?)).to be false
+      end
+    end
+
+    context 'when full' do
+      before(:example) { subject.capacity.times { subject.dock(bike) } }
+      it 'returns true' do
+        expect(subject.send(:capacity_full?)).to be true
+      end
+    end
+  end
+
+  describe '#capacity' do
+    it 'returns the default capacity' do
+      expect(subject.capacity).to eq described_class::DEFAULT_CAPACITY
     end
   end
 end
