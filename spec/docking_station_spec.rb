@@ -1,15 +1,17 @@
 describe DockingStation do
+  let(:bike) { Bike.new }
+
   it { is_expected.to respond_to :release_bike }
 
   describe '#release_bike' do
-    let(:bike) { subject.release_bike }
+    let(:released_bike) { subject.release_bike }
 
     it 'returns a bike' do
-      expect(bike).to be_an_instance_of Bike
+      expect(released_bike).to be_an_instance_of Bike
     end
 
     it 'returns a working bike' do
-      expect(bike.working?).to be true
+      expect(released_bike.working?).to be true
     end
   end
 
@@ -19,6 +21,11 @@ describe DockingStation do
   end
 
   describe '#dock_bike' do
-    it ''
+    it { is_expected.to respond_to(:dock_bike).with(1) }
+
+    it 'adds bike to bikes' do
+      subject.dock_bike(bike)
+      expect(subject.bikes).to include(bike)
+    end
   end
 end
