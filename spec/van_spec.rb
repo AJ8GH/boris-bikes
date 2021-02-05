@@ -5,12 +5,6 @@ describe Van do
   let(:bad_station) { instance_double(DockingStation, 'Bad Station', bikes: bike_array) }
   let(:large_station) { instance_double(DockingStation, 'Large Station', bikes: (bike_array * 3)) }
 
-  describe '#bikes' do
-    it 'starts empty' do
-      expect(subject.bikes).to eq []
-    end
-  end
-
   context 'when collecting' do
     describe '#collect_broken' do
       context 'when there are broken and working bikes' do
