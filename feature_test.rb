@@ -54,7 +54,7 @@ p 'docking station bikes:'
 p docking_station.bikes
 puts
 p 'collect...'
-p van.collect(docking_station)
+p van.collect_broken(docking_station)
 puts
 p 'van bikes:'
 p van.bikes
@@ -62,3 +62,18 @@ puts
 p 'docking station bikes:'
 p docking_station.bikes
 puts
+
+p 'create garage'
+p garage = Garage.new
+puts
+
+p 'van delivers broken bikes'
+p van
+puts
+p garage
+puts
+p van.deliver_broken(garage)
+puts
+p garage
+puts
+p van

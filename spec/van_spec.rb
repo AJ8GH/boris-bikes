@@ -3,6 +3,7 @@ describe Van do
   let(:broken_bike) { instance_double(Bike, 'Broken Bike', working?: false) }
   let(:bike_array) { [bike, broken_bike, bike, broken_bike] }
   let(:bad_station) { instance_double(DockingStation, 'Bad Station', bikes: bike_array) }
+  let(:large_station) { instance_double(DockingStation, 'Large Station', bikes: (bike_array * 3)) }
 
   describe '#bikes' do
     it 'starts empty' do
@@ -33,7 +34,6 @@ describe Van do
     end
 
     context 'when there are many bikes' do
-      let(:large_station) { instance_double(DockingStation, 'Large Station', bikes: (bike_array * 3)) }
       before(:example) { subject.collect_broken(large_station) }
 
       it 'collects all broken bikes' do
@@ -50,13 +50,40 @@ describe Van do
     end
   end
 
-  # describe '#collect'
+  describe '#collect_working' do
+    before(:example) { subject.collect_working(large_station) }
+    it 'collects only working bikes' do
+      expect(subject.bikes).to all(be_working)
+    end
 
-  # describe '#deliver_broken' do
-  #   let(:empty_station) { instance_double(DockingStation, 'Empty Station', bikes: []) }
-  #   before(:Example) { van.collect_working(bad_station) }
-  #   it 'delivers only working bikes' do
-  #     expect(van.bikes).to
-  #   end
-  # end
+    it 'collects all working bikes' do
+      expect(large_station.bikes.none? { |bike| bike.working? }).to be true
+    end
+
+    it 'maintains the overall number of bikes' do
+      expect(subject.bikes.count + large_station.bikes.count).to eq bike_array.count * 3
+    end
+  end
+
+  describe '#deliver_broken' do
+    let(:bikes_array) { [] }
+    let(:empty_garage) { instance_double(Garage, 'Empty Garage', bikes: bikes_array, :bikes= => bikes_array ) }
+    
+    before(:example) { subject.collect_all(large_station) }
+    it 'delivers only broken_bikes' do
+      subject.deliver_broken(empty_garage)
+      expect(subject.bikes).to eq [bike] * 6
+    end
+  end
+
+  describe '#collect_all' do
+    before(:example) { subject.collect_all(large_station) }
+    it 'collects all bikes' do
+      expect(large_station.bikes).to be_empty
+    end
+
+    it 'maintains the overall number of bikes' do
+      expect(subject.bikes.count).to eq bike_array.count * 3
+    end
+  end
 end
