@@ -1,7 +1,5 @@
-class Garage
-  attr_accessor :bikes
+require_relative 'bike_container'
 
-  def initialize
-    @bikes = []
-  end
+class Garage
+  include BikeContainer
 end

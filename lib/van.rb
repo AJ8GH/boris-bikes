@@ -1,9 +1,7 @@
-class Van
-  attr_accessor :bikes
+require_relative 'bike_container'
 
-  def initialize
-    @bikes = []
-  end
+class Van
+  include BikeContainer
 
   def collect_broken(docking_station)
     bikes = docking_station.bikes
