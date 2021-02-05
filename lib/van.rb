@@ -5,7 +5,7 @@ class Van
     @bikes = []
   end
 
-  def collect(docking_station)
+  def collect_broken(docking_station)
     bikes = docking_station.bikes
     self.bikes += find_broken(bikes)
     remove_broken(bikes)
