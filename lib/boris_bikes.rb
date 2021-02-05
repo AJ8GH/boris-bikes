@@ -1,3 +1,5 @@
 require_relative 'docking_station'
 require_relative 'bike'
 require_relative 'exceptions'
+require_relative 'boris_bikes'
+require_relative 'van'
