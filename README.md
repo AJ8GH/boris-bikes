@@ -9,7 +9,7 @@
 
 ### Domain Modeling
 
-The solution was realised by modeling a number of [user stories]() from our client. Paying close attention to the desired behaviour of our users was key to the success of the project.
+The solution was realised by modeling a number of [user stories](https://github.com/AJ8GH/boris-bikes/blob/main/user_stories.md) from our client. Paying close attention to the desired behaviour of our users was key to the success of the project.
 
 ### TDD
 
