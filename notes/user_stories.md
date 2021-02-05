@@ -65,7 +65,3 @@ Docking Station | release
 Garage          | accept_bikes
 Van             | deliver
                 | collect
-                |
-                |
-                |
-                |

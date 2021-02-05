@@ -32,11 +32,6 @@ describe DockingStation do
     end
   end
 
-  describe '#bikes' do
-    subject(:bikes) { described_class.new.bikes }
-    it { is_expected.to be_an_instance_of Array }
-  end
-
   describe '#dock' do
     context 'when not full' do
       it { is_expected.to respond_to(:dock).with(1) }

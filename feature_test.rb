@@ -77,3 +77,26 @@ puts
 p garage
 puts
 p van
+puts
+
+p 'van collects working bikes'
+p 'new garage'
+p garage = Garage.new
+p 'add bikes'
+p garage.bikes << Bike.new << Bike.new << Bike.new.broken << Bike.new
+p garage
+puts
+p 'van collects working from garage'
+van.collect_working(garage)
+p garage
+p van
+
+p 'van delivers working to station'
+station = DockingStation.new
+p van.deliver_working(station)
+puts
+p 'station'
+p station
+puts
+p 'van'
+p van

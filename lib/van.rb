@@ -31,7 +31,7 @@ class Van
     docking_station.bikes += find_working(bikes)
     remove_working(bikes)
   end
-  
+
   private
 
   def find_broken(bikes)
