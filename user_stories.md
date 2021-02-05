@@ -1,7 +1,5 @@
 # User Stories
 
-## Stories
-
 - As a person,
 - So that I can use a bike,
 - I'd like a docking station to release a bike.
@@ -53,15 +51,3 @@
 - As a maintainer of the system,
 - So that I can manage broken bikes and not disappoint users,
 - I'd like vans to collect working bikes from garages and distribute them to docking stations.
-
-## Domain Model
-
-Objects         | Messages
-----------------|-----------
-Person          | report_broken
-Bike            | working
-Docking Station | release
-                | dock
-Garage          | accept_bikes
-Van             | deliver
-                | collect
