@@ -45,10 +45,12 @@ describe DockingStation do
         subject.dock(bike)
         expect(subject.bikes).to include(bike)
       end
+    end
 
-      it 'raises no error when nearly full' do
-        (subject.capacity - 1).times { subject.dock(bike) }
-        expect { subject.dock(bike) }.to_not raise_error(CapacityError)
+    context 'when nearly full' do
+      before(:example) { (subject.capacity - 1).times { subject.dock(bike) } }
+      it 'raises no error'  do
+        expect { subject.dock(bike) }.to_not raise_error
       end
     end
 
