@@ -1,7 +1,7 @@
 # Boris Bikes
 [![Maintainability](https://api.codeclimate.com/v1/badges/bbd400a9900bd0949e92/maintainability)](https://codeclimate.com/github/AJ8GH/boris-bikes/maintainability) [![Build Status](https://travis-ci.com/AJ8GH/boris-bikes.svg?branch=main)](https://travis-ci.com/AJ8GH/boris-bikes) [![Coverage Status](https://coveralls.io/repos/github/AJ8GH/boris-bikes/badge.svg?branch=main)](https://coveralls.io/github/AJ8GH/boris-bikes?branch=main)
 
-## _Software solutions for Boris and TFL (& Arnie)_
+## _Software solutions for Boris and TFL_
 
 ![Boris & Arnie](https://images.theconversation.com/files/35320/original/zss3jzhn-1384451954.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=926&fit=clip)
 
