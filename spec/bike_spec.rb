@@ -6,8 +6,8 @@ describe Bike do
   end
 
   describe '#broken' do
-    before(:example) { bike.broken }
     it 'sets working? to false' do
+      bike.broken
       expect(bike.working?).to be false
     end
   end

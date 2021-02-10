@@ -25,8 +25,8 @@ describe DockingStation do
     end
 
     context 'when all broken' do
-      before(:example) { subject.dock(broken_bike) }
       it 'raises No working bikes error' do
+        subject.dock(broken_bike)
         expect { subject.release_bike }.to raise_error(NoWorkingBikesError, 'There are no working bikes!')
       end
     end
@@ -43,15 +43,15 @@ describe DockingStation do
     end
 
     context 'when nearly full' do
-      before(:example) { (subject.capacity - 1).times { subject.dock(bike) } }
       it 'raises no error'  do
+        (subject.capacity - 1).times { subject.dock(bike) }
         expect { subject.dock(bike) }.to_not raise_error
       end
     end
 
     context 'when full' do
-      before(:example) { subject.capacity.times { subject.dock(bike) } }
       it 'raises error' do
+        subject.capacity.times { subject.dock(bike) }
         expect { subject.dock(bike) }.to raise_error(CapacityError, 'Docking station full!')
       end
     end
@@ -65,8 +65,8 @@ describe DockingStation do
     end
 
     context 'when not empty' do
-      before(:example) { subject.dock(bike) }
       it 'returns false' do
+        subject.dock(bike)
         expect(subject.send(:no_bikes?)).to be false
       end
     end
@@ -80,8 +80,8 @@ describe DockingStation do
     end
 
     context 'when full' do
-      before(:example) { subject.capacity.times { subject.dock(bike) } }
       it 'returns true' do
+        subject.capacity.times { subject.dock(bike) }
         expect(subject.send(:full?)).to be true
       end
     end
@@ -89,7 +89,6 @@ describe DockingStation do
 
   describe '#capacity' do
     let(:station) { described_class.new(40) }
-
     it 'returns the default capacity' do
       expect(subject.capacity).to eq described_class::DEFAULT_CAPACITY
     end
@@ -101,8 +100,8 @@ describe DockingStation do
 
   describe '#all_broken?' do
     context 'when all broken' do
-      before (:example) { subject.dock(broken_bike) }
       it 'returns true' do
+        subject.dock(broken_bike)
         expect(subject.send(:all_broken?)).to be true
       end
     end
