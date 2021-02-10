@@ -3,6 +3,8 @@ require_relative 'bike_container'
 class Van
   include BikeContainer
 
+  DEFAULT_CAPACITY = 30
+
   def collect_broken(docking_station)
     bikes = docking_station.bikes
     self.bikes += find_broken(bikes)

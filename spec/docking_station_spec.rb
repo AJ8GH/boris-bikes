@@ -10,11 +10,11 @@ describe DockingStation do
       it { is_expected.to respond_to :release_bike }
 
       it 'returns a bike' do
-        expect(released_bike.class).to be Bike
+        expect(released_bike).to be bike
       end
 
       it 'returns a working bike' do
-        expect(released_bike.working?).to be true
+        expect(released_bike).to be_working
       end
     end
 
