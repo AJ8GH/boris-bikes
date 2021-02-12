@@ -1,6 +1,6 @@
 describe DockingStation do
-  let(:bike) { instance_double(Bike, 'Bike', working?: true, class: Bike) }
-  let(:broken_bike) { instance_double(Bike, 'Broken Bike', working?: false) }
+  let(:bike) { instance_double(Bike, :bike, working?: true) }
+  let(:broken_bike) { instance_double(Bike, :broken_bike, working?: false) }
 
   describe '#release_bike' do
     context 'when not empty' do
